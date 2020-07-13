@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+group 'uk.ac.ncl'
+version '0.1-public'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.neo4j.driver:neo4j-java-driver:4.0.0'
+    implementation group: 'org.neo4j', name: 'neo4j', version: '3.5.12'
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+}
+
+application {
+    mainClassName = 'uk.ac.ncl.Run'
+    applicationDefaultJvmArgs = ['-Xmx16G']
+}
+
+test {
+    testLogging {
+        events "standardOut"
+    }
+}
+
+shadowJar {
+    mergeServiceFiles()
+    manifest { attributes "Main-Class": "uk.ac.ncl.Run"}
+}
