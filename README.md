@@ -11,3 +11,14 @@ Print help:
 ```shell script
 java -jar dumper.jar -h
 ```
+
+### Use Case
+Download the publicly available biomedical database [hetionet] which contains 47,032 nodes and 2,250,197 relationships in 2 mins:
+```
+java -jar dumper.jar -uri bolt://neo4j.het.io/browser/ -u neo4j -p neo4j -sp -t data/hetionet
+```
+
+or use `Gradle` to run directly:
+```
+gradle run --args="-uri bolt://neo4j.het.io/browser/ -u neo4j -p neo4j -sp -t data/hetionet"
+```
